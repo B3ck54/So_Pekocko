@@ -9,7 +9,7 @@ Application d’évaluation de sauces piquantes.
 
  http://localhost:4200/
  
- 🚀 **Install & Start Front-end**
+ 🚀 **Install & Start Back-end**
 
 	cd back-end
 	nodemon server
