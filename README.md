@@ -11,7 +11,7 @@ Application d’évaluation de sauces piquantes.
  
  🚀 **Install & Start Back-end**
 
-	cd back-end
+	cd ../back-end/
 	nodemon server
 
 http://localhost:3000/
