@@ -1,6 +1,10 @@
 # So_Pekocko
 Application d’évaluation de sauces piquantes.
 
+🚀 **First git clone https://github.com/B3ck54/So_Pekocko.git**
+Go to folder "so_Pekocko"
+Configure .env (database, port ...)
+
  🚀 **Install & Start Front-end**
 
 	cd front-end
