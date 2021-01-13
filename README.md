@@ -1,23 +1,26 @@
-
-So_Pekocko
+# So_Pekocko
 Application d’évaluation de sauces piquantes.
 
-🚀 First
+🚀 **First**
 
-git clone https://github.com/B3ck54/So_Pekocko.git
-Go to folder “so_Pekocko”
-Configure .env (database, port …)
+    git clone https://github.com/B3ck54/So_Pekocko.git
 
-🚀 Install & Start Front-end
+Go to folder "so_Pekocko"
+Configure .env (database, port ...)
 
-cd front-end
-npm install
-npm start
-http://localhost:4200/
+ 🚀 **Install & Start Front-end**
 
-🚀 Install & Start Back-end
+	cd front-end
+	npm install
+	npm start
 
-cd ../back-end/
-npm install
-nodemon server
+ http://localhost:4200/
+ 
+ 🚀 **Install & Start Back-end**
+
+	cd ../back-end/
+	npm install
+	nodemon server
+
 http://localhost:3000/
+
