@@ -1,15 +1,18 @@
+// Ce fichier gère toutes les requêtes envoyées au serveur
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const path = require('path'); //donne accès au chemin de système de fichier
+
 const dotenv = require('dotenv').config();
 
 mongoose.set('useCreateIndex', true);
 
 
-// const sauceRoutes = require ('./routes/sauce');
+const sauceRoutes = require ('./routes/sauce');
 const userRoutes = require ('./routes/user');
 
-const path = require('path');
 
 const connectionSecurity = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.l3xmz.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
 
@@ -30,7 +33,9 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 
-// app.use('/api/sauces', sauceRoutes);
+app.use('/images', express.static(path.join(__dirname, 'images')));
+
+app.use('/api/sauces', sauceRoutes);
 app.use('/api/auth', userRoutes);
 
 module.exports = app;
