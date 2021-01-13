@@ -3,6 +3,9 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv').config();
 
+mongoose.set('useCreateIndex', true);
+
+
 // const sauceRoutes = require ('./routes/sauce');
 const userRoutes = require ('./routes/user');
 
