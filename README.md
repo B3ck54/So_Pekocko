@@ -8,19 +8,14 @@ Application d’évaluation de sauces piquantes.
 Go to folder "so_Pekocko"
 Configure .env (database, port ...)
 
- 🚀 **Install & Start Front-end**
+ 🚀 **Install Front-end & Back-end**
 
-	cd front-end
 	npm install
-	npm start
 
  http://localhost:4200/
  
- 🚀 **Install & Start Back-end**
+ 🚀 **Start Front-end & Back-end**
 
-	cd ../back-end/
-	npm install
-	nodemon server
+	npm start
 
 http://localhost:3000/
-
