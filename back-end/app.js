@@ -4,6 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path'); //donne accès au chemin de système de fichier
+const helmet = require("helmet");
 
 const dotenv = require('dotenv').config();
 
@@ -22,7 +23,9 @@ mongoose.connect( connectionSecurity,
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
-  const app = express();
+const app = express();
+
+app.use(helmet());
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
