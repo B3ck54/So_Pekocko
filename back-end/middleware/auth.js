@@ -1,11 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-/**
- * 
- * @param {*} req 
- * @param {*} res 
- * @param {*} next 
- */
+//middleware qui sera appliqué avant le controller de nos routes. Pour chaque requête sur nos routes protégées on va d'abord passer par ce middleware
 module.exports = (req, res, next) => {
   try {
     const token = req.headers.authorization.split(' ')[1]; //on récupére le token dans le header et on le split
@@ -14,7 +9,7 @@ module.exports = (req, res, next) => {
     if (req.body.userId && req.body.userId !== userId) {
       throw 'Invalid user ID';
     } else {
-      next();//middleware  qui sera appliqué avant le controller de nos routes. Pour chaque requête sur nos routes protégées on va d'abord passer par ce middleware
+      next();
     }
   } catch {
     res.status(401).json({
