@@ -14,9 +14,7 @@ mongoose.set('useCreateIndex', true);
 const sauceRoutes = require ('./routes/sauce');
 const userRoutes = require ('./routes/user');
 
-
-const connectionSecurity = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.l3xmz.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
-
+const connectionSecurity = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}${process.env.DB_CLUSTER}/${process.env.DB_NAME}?retryWrites=true&w=majority`
 mongoose.connect( connectionSecurity,
 { useNewUrlParser: true,
     useUnifiedTopology: true })
@@ -26,6 +24,25 @@ mongoose.connect( connectionSecurity,
 const app = express();
 
 app.use(helmet());
+
+var session = require('express-session');
+app.set('trust proxy', 1) // trust first proxy
+
+app.use(session({
+  secret : 's3cuR3',
+  name : 'sessionId',
+  key: 'sid',
+  resave: true,
+  saveUninitialized: true,
+    cookies: {
+    secure: true,
+    httpOnly: true, //sécurise la connexion au niveau des cookies pour ne pas être modifier par un attaquant
+    domain: 'http://localhost:3000',
+    sameSite: true,
+    maxAge: 600000 // Time is in miliseconds
+    }  
+  })
+);
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
