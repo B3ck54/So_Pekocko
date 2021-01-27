@@ -4,12 +4,7 @@ const { findOne } = require('../models/Sauce');
 
 const Sauce = require ('../models/Sauce');
 
-/**
- * 
- * @param {*} req 
- * @param {*} res 
- * @param {*} next 
- */
+
 exports.createSauce = (req, res, next) => {
   const sauceObject = JSON.parse(req.body.sauce);
   delete sauceObject._id;
@@ -25,12 +20,6 @@ exports.createSauce = (req, res, next) => {
   .catch(error => res.status(400).json({ error }));
 };
 
-/**
- * 
- * @param {*} req 
- * @param {*} res 
- * @param {*} next 
- */
 exports.editSauce = (req, res, next) => {
   const sauceObject = req.file ?
     {
@@ -42,12 +31,7 @@ exports.editSauce = (req, res, next) => {
     .catch(error => res.status(400).json({ error }));
 };
 
-/**
- * 
- * @param {*} req 
- * @param {*} res 
- * @param {*} next 
- */
+
 exports.deleteSauce = (req, res, next) => {
   Sauce.findOne({ _id: req.params.id })
     .then(sauce => {
@@ -61,36 +45,21 @@ exports.deleteSauce = (req, res, next) => {
     .catch(error => res.status(500).json({ error }));
 };
 
-/**
- * 
- * @param {*} req 
- * @param {*} res 
- * @param {*} next 
- */
+
 exports.getOneSauce = (req, res, next) => {
   Sauce.findOne({_id: req.params.id})
     .then(sauce => res.status(200).json(sauce))
     .catch(error => res.status(404).json({ error }));
   };
 
-/**
- * 
- * @param {*} req 
- * @param {*} res 
- * @param {*} next 
- */
+
 exports.getAllSauces = (req, res, next) => {
   Sauce.find()
   .then(sauces => res.status(200).json(sauces))
   .catch(error => res.status(400).json({ error }));
 };
 
-/**
- * 
- * @param {*} req 
- * @param {*} res 
- * @param {*} next 
- */
+
 exports.likeSauce = (req, res, next) => {
 
   let like = req.body.like;
@@ -99,7 +68,7 @@ exports.likeSauce = (req, res, next) => {
 
   // on récupère la sauce dans l'url req.params.id, et on utilise la méthode findOne de mongoose pour la trouver.
   Sauce.findOne({_id: req.params.id})         
-   .then(sauce => {
+   .then(sauce => { // ici on récupère la sauce trouvée
 
   switch (like ) {
     // a user likes sauce
@@ -152,7 +121,6 @@ exports.likeSauce = (req, res, next) => {
              )
              .then(() => res.status(200).json({ message: 'Undisliked !' }))
              .catch((error) => res.status(400).json({ error }));
-        
         }
         break;
       }

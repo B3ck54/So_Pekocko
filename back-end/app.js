@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path'); //donne accès au chemin de système de fichier
-const helmet = require("helmet");
+const helmet = require("helmet");// sécurité entêtes http
 
 const dotenv = require('dotenv').config();
 
