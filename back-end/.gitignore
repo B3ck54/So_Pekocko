@@ -3,3 +3,6 @@ node_modules/
 
 ### dotenv ###
 .env
+
+# OSX
+.DS_Store
