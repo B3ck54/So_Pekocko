@@ -21,11 +21,27 @@ exports.createSauce = (req, res, next) => {
 };
 
 exports.editSauce = (req, res, next) => {
-  const sauceObject = req.file ?
-    {
-      ...JSON.parse(req.body.sauce),
-      imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-    } : { ...req.body };
+  let sauceObject = {};
+
+  //si un fichier est présent dans la requête
+  if (req.file) {
+    //j'efface l'image sur le serveur si la sauce en possède déjà une
+    Sauce.findOne({_id: req.params.id})
+    .then((sauce) => {
+    const filename = sauce.imageUrl.split('/images/')[1]
+    fs.unlinkSync(`images/${filename}`)
+  })
+
+   // ici je crée un object sauce si j'update avec une image
+    sauceObject = {
+    ...JSON.parse(req.body.sauce),
+    imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+    }
+  } else {
+    sauceObject = {
+      ...req.body
+    }
+  }  
   Sauce.updateOne({ _id: req.params.id }, { ...sauceObject, _id: req.params.id })
     .then(() => res.status(200).json({ message: 'Sauce modifiée !'}))
     .catch(error => res.status(400).json({ error }));
@@ -71,7 +87,7 @@ exports.likeSauce = (req, res, next) => {
    .then(sauce => { // ici on récupère la sauce trouvée
 
   switch (like ) {
-    // a user likes sauce
+    // un utilisateur aime une sauce
     case 1:
       Sauce.updateOne(
        {_id :req.params.id } ,
@@ -84,7 +100,7 @@ exports.likeSauce = (req, res, next) => {
         .catch((error) => res.status(400).json({ error }))
       break;
 
-      // a user dislikes sauce
+      // un utilisateur n'aime pas une sauce
       case -1:
       Sauce.updateOne(
        {_id :req.params.id } ,
@@ -97,7 +113,7 @@ exports.likeSauce = (req, res, next) => {
         .catch((error) => res.status(400).json({ error }));
       break;
 
-      // a user unlike sauce
+      // un utilisatuer enlève son like
       case 0:
         if(sauce.usersLiked.includes(userId)) {
           Sauce.updateOne(
@@ -111,7 +127,7 @@ exports.likeSauce = (req, res, next) => {
              .catch((error) => res.status(400).json({ error }));
         
         } else if (sauce.usersDisliked.includes(userId)) {
-          // a user undislikes sauce
+          // un utilisatuer enlève son dislike
           Sauce.updateOne(
             {_id :req.params.id } ,
             {
