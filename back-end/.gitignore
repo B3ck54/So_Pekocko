@@ -4,5 +4,8 @@ node_modules/
 ### dotenv ###
 .env
 
+# exclude everything
+images/*
+
 # OSX
 .DS_Store
