@@ -5,7 +5,7 @@ node_modules/
 .env
 
 # exclude everything
-images/*
+./images/*
 
 # OSX
 .DS_Store
