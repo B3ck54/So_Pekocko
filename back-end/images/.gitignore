@@ -1,7 +1,5 @@
-# exclude everything
+# ignore all logs files
 *
-!*/
-!.gitignore
 
 # exception to the rule
 !.gitkeep
