@@ -1,4 +1,4 @@
-# ignore all logs files
+# exclude everything
 *
 
 # exception to the rule
