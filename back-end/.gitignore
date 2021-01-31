@@ -6,3 +6,9 @@ node_modules/
 
 # OSX
 .DS_Store
+
+# exclude everything
+images/*
+
+# exception to the rule
+!images/.gitkeep 
