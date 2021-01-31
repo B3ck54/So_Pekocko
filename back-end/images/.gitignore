@@ -1,5 +1,7 @@
 # exclude everything
-images/*
+*
+!*/
+!.gitignore
 
 # exception to the rule
-!images/.gitkeep 
+!.gitkeep
