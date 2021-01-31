@@ -34,8 +34,8 @@ exports.login = (req, res, next) => {
             userId: user._id, // renvoie un objet json qui contient un userId  et un token
             token: jwt.sign(
               { userId: user._id },
-              'RANDOM_TOKEN_SECRET', // le token est dans le header de la requête
-              { expiresIn: '24h' }
+              process.env.JWT_TOKEN_SECRET, // le token est dans le header de la requête
+              { expiresIn: '1h' }
             )
           });
         })
