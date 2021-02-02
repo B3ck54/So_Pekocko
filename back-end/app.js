@@ -26,23 +26,6 @@ const app = express();
 
 app.use(helmet());
 
-var session = require('express-session');
-app.set('trust proxy', 1)
-
-app.use(session({
-  secret : 's3cuR3',
-  name : 'sessionId',
-  key: 'sid',
-  resave: true,
-  saveUninitialized: true,
-    cookies: {
-    secure: true,
-    httpOnly: true, //sécurise la connexion au niveau des cookies pour ne pas être modifier par un attaquant
-    domain: 'http://localhost:3000',
-    }  
-  })
-);
-
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
