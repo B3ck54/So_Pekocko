@@ -8,6 +8,8 @@ Application d’évaluation de sauces piquantes.
 Go to folder "so_Pekocko"
 Configure .env (database, port ...)
 
+One commande for all : 
+
  🚀 **Install Front-end & Back-end**
 
 	npm install
